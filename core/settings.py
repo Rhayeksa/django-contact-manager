@@ -9,8 +9,16 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
 from pathlib import Path
+
+import pymysql
+
+from configs.db import (MYSQL_DB, MYSQL_DB_HOST, MYSQL_DB_PASSWORD,
+                        MYSQL_DB_PORT, MYSQL_DB_USERNAME)
+from configs.project import (DJANGO_ALLOWED_HOSTS, DJANGO_DEBUG,
+                             DJANGO_SECRET_KEY)
+
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +28,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6=#o*7lx1c0b047^*=5t-==qtrlaq$no10t30bm3dm=a7o&xhw'
+SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(DJANGO_DEBUG)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = list(DJANGO_ALLOWED_HOSTS.split(sep=", "))
 
 
 # Application definition
@@ -55,7 +63,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,10 +83,18 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': MYSQL_DB,
+        'USER': MYSQL_DB_USERNAME,
+        'PASSWORD': MYSQL_DB_PASSWORD,
+        'HOST': MYSQL_DB_HOST,
+        'PORT': MYSQL_DB_PORT,
+    },
 }
 
 
@@ -106,7 +122,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Jakarta'
 
 USE_I18N = True
 
