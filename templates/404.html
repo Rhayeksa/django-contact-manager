@@ -1,0 +1,16 @@
+<!- -  - ->{%extends "base.html"%}<!- -  - ->
+
+<!- -  - ->{%block apps%}<!- -  - ->
+<!- -  - ->{%include "components/navbar.html"%}<!- -  - ->
+<div class="container-fluid" style="padding-top: 70px">
+  <div class="card shadow font-monospace text-center" style="max-width: 450px">
+    <div class="card-header h1">Error</div>
+    <div class="card-body">
+      <div class="card-title h3">404</div>
+      <p class="card-text">
+        {% if msg %}{{msg}}{% else %}Page Not Found{% endif %}
+      </p>
+    </div>
+  </div>
+</div>
+<!- -  - ->{%endblock apps%}<!- -  - ->
