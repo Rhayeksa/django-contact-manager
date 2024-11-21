@@ -4,3 +4,4 @@ pillow==11.0.0 # lib driver imagefield
 PyMySQL==1.1.1 # lib driver DB MySQL
 SQLAlchemy==2.0.36 # lib ORM DB RDBMS
 pytz==2024.2 # lib timezone
+requests==2.32.3 # lib http request and response
