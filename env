@@ -4,16 +4,21 @@
   DJANGO_DEBUG="1"
   DJANGO_SECRET_KEY="?"
 
+# DB MySQL Freedb.tech
+  MYSQL_DB="?"
+  MYSQL_DB_USERNAME="?"
+  MYSQL_DB_PASSWORD="?"
+  MYSQL_DB_HOST="?"
+  MYSQL_DB_PORT="?"
 
-# DB PostgreSQL
-  PSGSQL_DB="?"
-  PSGSQL_DB_SCHEMA="?"
-  PSGSQL_DB_USERNAME="?"
-  PSGSQL_DB_PASSWORD="?"
-  PSGSQL_DB_HOST="?"
-  PSGSQL_DB_PORT="?"
+# DB MySQL Local
+  # MYSQL_DB="?"
+  # MYSQL_DB_USERNAME="?"
+  # MYSQL_DB_PASSWORD="?"
+  # MYSQL_DB_HOST="127.0.0.1"
+  # MYSQL_DB_PORT="3306"
 
 # ImgBB API - Repo Image
   IMGBB_API_URL="https://api.imgbb.com/1/upload"
-  # Key username rhayeksa
+  # Key username
   IMGBB_KEY="?"
