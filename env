@@ -1,0 +1,19 @@
+# PROJECT
+  DJANGO_ALLOWED_HOSTS = "127.0.0.1, localhost"
+  # set to 0 for false and set anyting for true
+  DJANGO_DEBUG="1"
+  DJANGO_SECRET_KEY="?"
+
+
+# DB PostgreSQL
+  PSGSQL_DB="?"
+  PSGSQL_DB_SCHEMA="?"
+  PSGSQL_DB_USERNAME="?"
+  PSGSQL_DB_PASSWORD="?"
+  PSGSQL_DB_HOST="?"
+  PSGSQL_DB_PORT="?"
+
+# ImgBB API - Repo Image
+  IMGBB_API_URL="https://api.imgbb.com/1/upload"
+  # Key username rhayeksa
+  IMGBB_KEY="?"
