@@ -1,0 +1,94 @@
+<form method="post">
+  {% csrf_token %}
+  <div
+    class="modal fade"
+    id="addEduModal"
+    tabindex="-1"
+    aria-labelledby="addEduModalLabel"
+    aria-hidden="true"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+  >
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title h5" id="addEduModalLabel">Education</div>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row gy-3 mb-2">
+            <div class="col-12">
+              <label for="field_edu_nm" class="form-label">Name</label>
+              <span class="text-danger ms-1">*</span>
+              <input
+                type="text"
+                name="edu_nm"
+                id="field_edu_nm"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="col-12">
+              <label for="field_major" class="form-label">Major</label>
+              <span class="text-danger ms-1">*</span>
+              <input
+                type="text"
+                name="major"
+                id="field_major"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="col-12">
+              <label for="field_category" class="form-label">Category</label>
+              <span class="text-danger ms-1">*</span>
+              <select
+                name="category"
+                id="field_category"
+                class="form-select"
+                aria-label="Select category"
+                required
+              >
+                <!- -  - ->{% for i in field_edu.category.opt %}
+                <option value="{{ i.0 }}">{{ i.1 }}</option>
+                <!- -  - ->{% endfor %}
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="field_date_in" class="form-label">Date In</label>
+              <span class="text-danger ms-1">*</span>
+              <input
+                type="date"
+                name="date_in"
+                id="field_date_in"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="col-12">
+              <label for="field_date_out" class="form-label">Date Out</label>
+              <span class="text-danger ms-1">*</span>
+              <input
+                type="date"
+                name="date_out"
+                id="field_date_out"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" name="add_edu" class="btn btn-secondary">
+            <i class="bi bi-plus-square me-2"></i>Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

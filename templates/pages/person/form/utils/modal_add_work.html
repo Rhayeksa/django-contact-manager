@@ -1,0 +1,78 @@
+<form method="post">
+  {% csrf_token %}
+
+  <div
+    class="modal fade"
+    id="addWorkModal"
+    tabindex="-1"
+    aria-labelledby="addWorkModalLabel"
+    aria-hidden="true"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+  >
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title h5" id="addWorkModalLabel">
+            Work Experience
+          </div>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row gy-3">
+            <div class="col-12">
+              <div class="mb-1">
+                Name<span class="text-danger ms-1">*</span>
+              </div>
+              {{ field_work.company_nm }}
+              <div class="text-danger">{{data.company_nm.errors}}</div>
+            </div>
+            <div class="col-12">
+              <div class="mb-1">
+                {{ field_work.industry.label }}
+                <span class="text-danger ms-1">*</span>
+              </div>
+              {{ field_work.industry }}
+              <div class="text-danger">{{data.industry.errors}}</div>
+            </div>
+            <div class="col-12">
+              <div class="mb-1">
+                {{ field_work.role.label }}
+                <span class="text-danger ms-1">*</span>
+              </div>
+              {{ field_work.role }}
+              <div class="text-danger">{{data.role.errors}}</div>
+            </div>
+            <div class="col-12">
+              <div class="mb-1">
+                {{ field_work.date_in.label }}
+                <span class="text-danger ms-1">*</span>
+              </div>
+              {{ field_work.date_in }}
+              <div class="text-danger">{{data.date_in.errors}}</div>
+            </div>
+            <div class="col-12">
+              <div class="mb-1">
+                {{ field_work.date_out.label }}
+                <span class="text-danger ms-1">*</span>
+              </div>
+              {{ field_work.date_out }}
+              <div class="text-danger">{{data.date_out.errors}}</div>
+            </div>
+            <div class="mb-1"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" name="add_work" class="btn btn-secondary">
+            <i class="bi bi-plus-square me-2"></i>Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

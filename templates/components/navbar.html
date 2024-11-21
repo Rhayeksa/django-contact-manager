@@ -1,0 +1,70 @@
+<nav class="navbar fixed-top navbar-expand-xl bg-body-tertiary shadow-sm">
+  <div class="container-fluid">
+    <!-- button toggle -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasExample"
+      aria-controls="offcanvasExample"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- /button toggle -->
+
+    <!-- offcanva -->
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="offcanvasExample"
+      aria-labelledby="offcanvasExampleLabel"
+    >
+      <!-- offcanvas header -->
+      <div class="offcanvas-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <!-- /offcanvas header -->
+
+      <!-- offcanvas body -->
+      <div class="offcanvas-body">
+        <div
+          class="navbar-nav nav"
+          id="navbar-example2"
+          data-bs-dismiss="offcanvas"
+        >
+          <!- - - ->{% for i in nav_core %}<!- - - ->
+          <a class="nav-link" href="{{i.link}}">{{i.name}}</a>
+          <!- - - ->{% endfor %}<!- - - ->
+        </div>
+      </div>
+      <!-- /offcanvas body -->
+    </div>
+    <!-- /offcanva -->
+
+    <!-- nav right -->
+    <div class="navbar-nav nav list-group list-group-horizontal">
+      <div class="ms-3 d-flex align-items-center">
+        <input
+          type="checkbox"
+          class="btn-check"
+          id="darkModeSwitch"
+          autocomplete="off"
+        />
+        <label
+          class="btn btn-outline-secondary btn-sm rounded-5"
+          for="darkModeSwitch"
+        >
+          <i class="bi bi-sun-fill"></i> |
+          <i class="bi bi-moon-stars-fill"></i>
+        </label>
+      </div>
+    </div>
+    <!-- /nav right -->
+  </div>
+</nav>

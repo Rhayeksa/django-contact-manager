@@ -1,0 +1,229 @@
+<div class="text-center">
+  {% if person.photo %}
+  <img
+    src="{{ person.photo.url }}"
+    class="rounded-5 img-fluid img-thumbnail"
+    alt="..."
+    style="max-width: 200px; max-height: 200px"
+    loading="lazy"
+    decoding="async"
+  />
+  {% else %}
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="200"
+    height="200"
+    fill="currentColor"
+    class="bi bi-person-bounding-box"
+    viewBox="0 0 16 16"
+  >
+    <path
+      d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"
+    />
+    <path
+      d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+    />
+  </svg>
+  {% endif %}
+</div>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset id="fieldsetBio">
+    <div class="row g-3 mt-3">
+      <div class="col-md-4">
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="field_name" class="form-label">
+              {{field_person.name.label}}
+            </label>
+            <span class="text-danger"> *</span>
+            <input
+              type="text"
+              name="name"
+              id="field_name"
+              value="{{field_person.name.value}}"
+              class="form-control"
+              placeholder="John Doe"
+              required
+            />
+            {% if field_person.name.msg_err %}
+            <div class="text-danger">
+              <ul>
+                {% for i in field_person.name.msg_err %}
+                <li>{{ i }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+          <div class="col-12">
+            <label for="field_age" class="form-label">
+              {{field_person.age.label}}
+            </label>
+            <span class="text-danger"> *</span>
+            <input
+              type="number"
+              name="age"
+              id="field_age"
+              value="{{field_person.age.value}}"
+              class="form-control"
+              min="1"
+              required
+            />
+            {% if field_person.age.msg_err %}
+            <div class="text-danger">
+              <ul>
+                {% for i in field_person.age.msg_err %}
+                <li>{{ i }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="field_phone" class="form-label">
+              {{field_person.phone.label}}
+            </label>
+            <span class="text-danger"> *</span>
+            <input
+              type="text"
+              name="phone"
+              id="field_phone"
+              value="{{field_person.phone.value}}"
+              class="form-control"
+              minlength="10"
+              maxlength="20"
+              required
+              placeholder="081234567890"
+            />
+            {% if field_person.phone.msg_err %}
+            <div class="text-danger">
+              <ul>
+                {% for i in field_person.phone.msg_err %}
+                <li>{{ i }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+          <div class="col-12">
+            <label for="field_email" class="form-label">
+              {{field_person.email.label}}
+            </label>
+            <span class="text-danger"> *</span>
+            <input
+              type="email"
+              name="email"
+              class="form-control"
+              maxlength="25"
+              id="field_email"
+              value="{{field_person.email.value}}"
+              required
+              placeholder="email@email.com"
+            />
+            {% if field_person.email.msg_err %}
+            <div class="text-danger">
+              <ul>
+                {% for i in field_person.email.msg_err %}
+                <li>{{ i }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="field_gender" class="form-label">
+              {{field_person.gender.label}}
+            </label>
+            <span class="text-danger"> *</span>
+            <select
+              name="gender"
+              id="field_gender"
+              class="form-select"
+              aria-label="Select gender"
+              required
+            >
+              <!- -  - ->{% for i in field_person.gender.opt %}
+              <!- -  - ->{% if field_person.gender.value == i.0 %}
+              <option selected value="{{ i.0 }}">{{ i.1 }}</option>
+              <!- -  - ->{% else %}
+              <option value="{{ i.0 }}">{{ i.1 }}</option>
+              <!- -  - ->{% endif %}
+              <!- -  - ->{% endfor %}
+            </select>
+          </div>
+          <div class="col-12">
+            <label for="portfolio" class="form-label">
+              {{ field_person.portfolio.label }}
+            </label>
+            <input
+              type="text"
+              name="portfolio"
+              id="portfolio"
+              accept="image/*"
+              class="form-control"
+              placeholder="https://example.com"
+            />
+            {% if field_person.portfolio.msg_err %}
+            <div class="text-danger">
+              <ul>
+                {% for i in field_person.portfolio.msg_err %}
+                <li>{{ i }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <label for="field_address" class="form-label">
+        {{field_person.address.label}}
+      </label>
+      <span class="text-danger"> *</span>
+      <textarea
+        name="address"
+        id="field_address"
+        rows="5"
+        class="form-control"
+        style="resize: none"
+        placeholder="Jl. Example"
+        required
+      >
+{{field_person.address.value}}</textarea
+      >
+    </div>
+
+    <!- -  - ->{% if page == "add" or page == "edit" %}
+    <div class="text-center mt-3">
+      <button type="submit" name="check_and_update" class="btn btn-warning">
+        <i class="bi bi-floppy me-2"></i><span>Check & Update</span>
+      </button>
+    </div>
+    {% if alert.bio.state %}
+    <div
+      class="alert alert-{{ alert.bio.color }} alert-dismissible fade show mt-3"
+      role="alert"
+    >
+      {{ alert.bio.msg }}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endif %}
+    <!- -  - ->{% endif %}
+  </fieldset>
+</form>

@@ -1,0 +1,68 @@
+{% if page == "edit" or page == "add" %}
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <button
+    type="submit"
+    class="btn btn-primary"
+    style="min-width: 130px"
+    id="btn_save"
+  >
+    <i class="bi bi-floppy me-2 fs-5"></i><span class="fs-5">Save</span>
+  </button>
+  <a
+    href="{% if page == 'add' %}{% url 'web:person' %}{% else %}{% url 'web:person_btn_cancel' person_id %}{% endif %}"
+    class="btn btn-danger ms-2"
+    style="min-width: 130px"
+  >
+    <i class="bi bi-x-square me-2 fs-5"></i><span class="fs-5">Cancel</span>
+  </a>
+</form>
+{% endif %}
+
+<!- -  - ->{% if page == "detail" %}
+<a
+  class="btn btn-warning ms-2"
+  href="{% url 'web:person_add_or_edit' person.person_id %}"
+  style="min-width: 130px"
+  ><i class="bi bi-pencil-square me-2 fs-5"></i><span class="fs-5">Edit</span>
+</a>
+<a class="btn btn-primary ms-2" href="#" style="min-width: 130px"
+  ><i class="bi bi-printer me-2 fs-5"></i><span class="fs-5">Print</span>
+</a>
+
+<button
+  type="button"
+  class="btn btn-danger ms-2"
+  data-bs-toggle="modal"
+  data-bs-target="#deleteByIdModal"
+  style="min-width: 130px"
+>
+  <i class="bi bi-trash me-2 fs-5"></i><span class="fs-5">Delete</span>
+</button>
+<!-- modal delete_by_id -->
+<div
+  class="modal fade"
+  id="deleteByIdModal"
+  tabindex="-1"
+  aria-labelledby="deleteByIdModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteByIdModalLabel">Warning</h5>
+      </div>
+      <div class="modal-body">Do you want to delete this Person ?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          No
+        </button>
+        <a href="#" class="btn btn-danger"> Yes </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /modal delete_by_id -->
+<!- -  - ->{% endif %}

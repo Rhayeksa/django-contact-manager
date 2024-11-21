@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col">
+    <div class="fs-4">Education<i class="bi bi-book ms-2"></i></div>
+  </div>
+  <div class="col text-end">
+    {% if page == "add" or page == "edit" %}
+    <button
+      class="btn btn-secondary text-align-middle"
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#addEduModal"
+      id="btn_add_edu"
+    >
+      <i class="bi bi-plus-square me-2"></i>
+      Add
+    </button>
+    {% endif %}
+  </div>
+</div>
+<table id="table_edu" class="table table-striped" style="width: 100%">
+  <thead>
+    <tr>
+      <th style="min-width: 250px">Name</th>
+      <th style="min-width: 200px" class="text-start">Major</th>
+      <th style="min-width: 150px" class="text-center">Category</th>
+      <th style="min-width: 100px" class="text-center">Date In</th>
+      <th style="min-width: 100px" class="text-center">Date Out</th>
+      {% if page == "add" or page == "edit" %}
+      <th class="text-center">Action</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    <!- - - ->{% for i in edu %}<!- - - ->
+    <tr>
+      <td class="align-middle">{{ i.education_nm }}</td>
+      <td class="align-middle">{{ i.major }}</td>
+      <td class="text-center align-middle">{{ i.category }}</td>
+      <td class="text-center align-middle">{{ i.date_in|date:"M Y" }}</td>
+      <td class="text-center align-middle">{{ i.date_out|date:"M Y" }}</td>
+      {% if page == "add" or page == "edit" %}
+      <td class="text-center align-middle">
+        <form method="post">
+          {% csrf_token %}
+          <input
+            type="text"
+            name="edu_id"
+            value="{{ forloop.counter0 }}"
+            hidden
+          />
+          <button type="submit" name="del_edu" class="btn btn-danger">
+            <i class="bi bi-trash"></i>
+          </button>
+        </form>
+      </td>
+      {% endif %}
+    </tr>
+    <!- - - ->{% endfor %}<!- - - ->
+  </tbody>
+</table>
