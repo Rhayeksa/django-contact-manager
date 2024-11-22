@@ -189,4 +189,4 @@ def edit(request, id):
         session.rollback()
         session.close()
         print("\nError Message : ", str(e), "\n")
-        return render(request=None, template_name="500.html", context={"nav_core": nav()})
+        return render(request=None, template_name="500.html", context={"nav_core": nav()["contact"]})
