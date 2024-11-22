@@ -2,8 +2,8 @@
 
 def nav():
     return {
-        "person": [
-            {"name": "Person", "link": "/"},
-            {"name": "Add", "link": "/person/add"},
+        "contact": [
+            {"name": "Contact", "link": "/"},
+            {"name": "Add", "link": "/contact/add"},
         ],
     }
