@@ -23,7 +23,9 @@
         <div class="modal-body">
           <div class="row gy-3 mb-2">
             <div class="col-12">
-              <label for="field_edu_nm" class="form-label">Name</label>
+              <label for="field_edu_nm" class="form-label">
+                {{ edu.field.name.label }}
+              </label>
               <span class="text-danger ms-1">*</span>
               <input
                 type="text"
@@ -34,7 +36,9 @@
               />
             </div>
             <div class="col-12">
-              <label for="field_major" class="form-label">Major</label>
+              <label for="field_major" class="form-label">
+                {{ edu.field.major.label }}
+              </label>
               <span class="text-danger ms-1">*</span>
               <input
                 type="text"
@@ -45,7 +49,9 @@
               />
             </div>
             <div class="col-12">
-              <label for="field_category" class="form-label">Category</label>
+              <label for="field_category" class="form-label">
+                {{ edu.field.category.label }}
+              </label>
               <span class="text-danger ms-1">*</span>
               <select
                 name="category"
@@ -54,13 +60,15 @@
                 aria-label="Select category"
                 required
               >
-                <!- -  - ->{% for i in field_edu.category.opt %}
+                <!- -  - ->{% for i in edu.field.category.opt %}
                 <option value="{{ i.0 }}">{{ i.1 }}</option>
                 <!- -  - ->{% endfor %}
               </select>
             </div>
             <div class="col-12">
-              <label for="field_date_in" class="form-label">Date In</label>
+              <label for="field_date_in" class="form-label">
+                {{ edu.field.date_in.label }}
+              </label>
               <span class="text-danger ms-1">*</span>
               <input
                 type="date"
@@ -71,7 +79,9 @@
               />
             </div>
             <div class="col-12">
-              <label for="field_date_out" class="form-label">Date Out</label>
+              <label for="field_date_out" class="form-label">
+                {{ edu.field.date_out.label }}
+              </label>
               <span class="text-danger ms-1">*</span>
               <input
                 type="date"

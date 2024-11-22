@@ -1,0 +1,66 @@
+<!- -  - ->{% extends "base.html" %}
+
+<!- -  - ->{% block css %}
+<link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/2.1.7/css/dataTables.bootstrap5.css"
+/>
+<!- -  - ->{% endblock css %}
+
+<!- -  - ->{% block apps %}
+<!- -  - ->{%include "components/navbar.html"%}
+<div class="container-fluid" style="padding-top: 70px">
+  <div class="shadow-sm p-2 mb-3 bg-body-tertiary rounded">
+    <div class="fs-1 text-center">Contact</div>
+  </div>
+  <div class="shadow-sm p-3 mb-3 bg-body-tertiary rounded">
+    <table id="contact" class="table table-striped" style="width: 100%">
+      <thead>
+        <tr>
+          <th style="min-width: 200px">Name</th>
+          <th class="text-center">Gender</th>
+          <th class="text-center">Age</th>
+          <th class="text-start" style="min-width: 250px">Phone</th>
+          <th style="min-width: 250px">Email</th>
+          <th style="min-width: 200px">Created At</th>
+          <th style="min-width: 150px" class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!- -  - ->{% for i in contact.data %}<!- -  - ->
+        <tr>
+          <td>{{ i.name }}</td>
+          <td class="text-center">
+            {% if i.gender == "1" %} Pria {% else %} Wanita {% endif %}
+          </td>
+          <td class="text-center">{{ i.age }}</td>
+          <td class="text-start">{{ i.phone }}</td>
+          <td>{{ i.email }}</td>
+          <td>{{ i.created_at|date:"d M Y" }}</td>
+          <td class="text-center">
+            <a
+              href="{% url 'web:contact_detail' i.contact_id %}"
+              class="btn btn-primary"
+            >
+              <i class="bi bi-eye-fill me-2"></i>view
+            </a>
+          </td>
+        </tr>
+        <!- -  - ->{% endfor %}<!- -  - ->
+      </tbody>
+    </table>
+  </div>
+</div>
+<!- -  - ->{% endblock apps %}
+
+<!- -  - ->{% block js %}
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.7/js/dataTables.bootstrap5.js"></script>
+<script>
+  new DataTable("#contact", {
+    scrollX: true,
+    scrollY: 410,
+  });
+</script>
+<!- -  - ->{% endblock js %}

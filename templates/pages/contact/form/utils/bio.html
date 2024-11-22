@@ -1,0 +1,155 @@
+<div class="text-center" style="min-height: 200px">
+  {% if bio.data.photo_url %}
+  <img
+    src="{{ bio.data.photo_url }}"
+    class="rounded-5 img-fluid img-thumbnail"
+    alt="..."
+    style="max-width: 200px; max-height: 200px"
+    loading="lazy"
+    decoding="async"
+  />
+  {% else %}
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="200"
+    height="200"
+    fill="currentColor"
+    class="bi bi-person-bounding-box"
+    viewBox="0 0 16 16"
+  >
+    <path
+      d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"
+    />
+    <path
+      d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+    />
+  </svg>
+  {% endif %}
+</div>
+<fieldset id="fieldsetBio">
+  <form class="row g-3 mt-3" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-md-4">
+      <label for="field_name" class="form-label">
+        {{ bio.field.name.label }}
+      </label>
+      <span class="text-danger ms-1">*</span>
+      <input
+        type="text"
+        name="name"
+        id="field_name"
+        class="form-control"
+        required
+        value="{{ bio.field.name.value }}"
+        placeholder="John Doe"
+      />
+    </div>
+    <div class="col-md-4">
+      <label for="field_age" class="form-label">
+        {{ bio.field.age.label }}
+      </label>
+      <input
+        type="number"
+        name="age"
+        id="field_age"
+        class="form-control"
+        value="{{ bio.field.age.value }}"
+        min="0"
+      />
+    </div>
+    <div class="col-md-4">
+      <label for="inputAddress" class="form-label">Gender</label>
+      <span class="text-danger ms-1">*</span>
+      <select
+        name="gender"
+        id="field_gender"
+        class="form-select"
+        aria-label="Select gender"
+      >
+        <!- -  - ->{% for i in bio.field.gender.opt %}
+        <!- -  - ->{% if bio.field.gender.value == i.0 %}
+        <option selected value="{{ i.0 }}">{{ i.1 }}</option>
+        <!- -  - ->{% else %}
+        <option value="{{ i.0 }}">{{ i.1 }}</option>
+        <!- -  - ->{% endif %}
+        <!- -  - ->{% endfor %}
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="field_phone" class="form-label">
+        {{ bio.field.phone.label }}
+      </label>
+      <span class="text-danger ms-1">*</span>
+      <input
+        type="text"
+        name="phone"
+        id="field_phone"
+        class="form-control"
+        required
+        value="{{ bio.field.phone.value }}"
+        placeholder="081234567890"
+      />
+    </div>
+    <div class="col-md-4">
+      <label for="field_email" class="form-label">
+        {{ bio.field.email.label }}
+      </label>
+      <input
+        type="email"
+        name="email"
+        id="field_email"
+        class="form-control"
+        value="{{ bio.field.email.value }}"
+        placeholder="example@email.com"
+      />
+    </div>
+    <div class="col-md-4">
+      <label for="field_portfolio" class="form-label">
+        {{ bio.field.portfolio.label }}
+      </label>
+      <input
+        type="text"
+        name="portfolio"
+        id="field_portfolio"
+        class="form-control"
+        value="{{ bio.field.portfolio.value }}"
+        placeholder="example.com"
+      />
+    </div>
+    <div class="col-12">
+      <label for="field_photo" class="form-label">
+        {{ bio.field.photo.label }}
+      </label>
+      <input
+        type="file"
+        name="photo"
+        id="field_photo"
+        class="form-control"
+        accept="image/*"
+      />
+    </div>
+    <div class="col-12">
+      <label for="field_address" class="form-label">
+        {{ bio.field.address.label }}
+      </label>
+      <textarea
+        name="address"
+        id="field_address"
+        rows="5"
+        class="form-control"
+        style="resize: none"
+        placeholder="Jl. Example"
+        required
+      >
+{{bio.field.address.value}}</textarea
+      >
+    </div>
+    {% if page == "add" or page == "edit" %}
+    <div class="col-12 text-center">
+      <button type="submit" name="save_bio" class="btn btn-primary">
+        <i class="bi bi-floppy me-2"></i><span>Save</span>
+      </button>
+    </div>
+    {% endif %}
+  </form>
+</fieldset>
