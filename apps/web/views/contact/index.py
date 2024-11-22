@@ -16,15 +16,21 @@ def index(request):
         "contact": {"data": []},
     }
 
-    qry = session.execute(
-        text(
-            f"""
-            SELECT contact_id, name, age, gender, phone, email, created_at
-            FROM {MYSQL_DB}.contact
-            WHERE deleted_at IS NULL
-            """
-        )
-    ).mappings().fetchall()
-    context["contact"]["data"] = qry
+    try:
+        qry = session.execute(
+            text(
+                f"""
+                SELECT contact_id, name, age, gender, phone, email, created_at
+                FROM {MYSQL_DB}.contact
+                WHERE deleted_at IS NULL
+                """
+            )
+        ).mappings().fetchall()
+        context["contact"]["data"] = qry
 
-    return render(request=request, template_name="pages/contact/index.html", context=context)
+        return render(request=request, template_name="pages/contact/index.html", context=context)
+    except Exception as e:
+        session.rollback()
+        session.close()
+        print("\nError Message : ", str(e), "\n")
+        return render(request=None, template_name="500.html", context={"nav_core": nav()["contact"]})
