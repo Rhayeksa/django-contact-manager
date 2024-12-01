@@ -19,23 +19,23 @@ from django.conf.urls.static import static
 from django.shortcuts import render
 # from django.contrib import admin
 from django.urls import include, path
-from django.views.defaults import page_not_found
+# from django.views.defaults import page_not_found
 
 # from django.conf.urls import handler404
 # from apps.web.views.page_not_found import page_not_found
 from .settings import STATIC_ROOT, STATIC_URL
 
 
-def page_not_foundx(request):
+# def page_not_foundx(request):
 
-    # return render(None, "404.html", context={})
-    return page_not_found(request, None, "404.html")
+#     # return render(None, "404.html", context={})
+#     return page_not_found(request, None, "404.html")
 
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path(route="", view=include(arg="apps.web.urls")),
-    path(route="*", view=page_not_foundx),
+    # path(route="*", view=page_not_foundx),
 ]
 
 urlpatterns += static(prefix=STATIC_URL, document_root=STATIC_ROOT)
