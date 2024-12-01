@@ -4,12 +4,13 @@ from sqlalchemy.sql import text
 from configs.db import MYSQL_DB, session
 
 from ..utils.nav import nav
+from django.core.management.commands.runserver import Command as runserver
 
 # @login_required(login_url="auth:login")
 
 
 def index(request):
-
+    # print(runserver.help)
     context = {
         "page": "detail",
         "nav_menu": nav()["contact"],

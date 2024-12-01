@@ -19,7 +19,17 @@ from configs.db import (MYSQL_DB, MYSQL_DB_HOST, MYSQL_DB_PASSWORD,
 from configs.project import (DJANGO_ALLOWED_HOSTS, DJANGO_DEBUG,
                              DJANGO_SECRET_KEY)
 
+# from django.core.management.commands.runserver import Command as runserver
+
+
 pymysql.install_as_MySQLdb()
+
+# runserver.default_port = "8000"
+# runserver.run_from_argv(
+#     self="python ./manage.py runserver", argv=["--insecure"])
+# print(runserver.help)
+# print(runserver.run_from_argv(["python", "--insecure"]))
+# runserver
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,9 +42,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(DJANGO_DEBUG)
+# DEBUG = int(DJANGO_DEBUG)
+DEBUG = True
 
-ALLOWED_HOSTS = list(DJANGO_ALLOWED_HOSTS.split(sep=", "))
+# ALLOWED_HOSTS = list(DJANGO_ALLOWED_HOSTS.split(sep=", "))
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -138,6 +150,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

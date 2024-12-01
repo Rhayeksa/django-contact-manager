@@ -14,10 +14,28 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+from django.conf.urls.static import static
+# handler404 = "apps.web.views.page_not_found"
+from django.shortcuts import render
+# from django.contrib import admin
 from django.urls import include, path
+from django.views.defaults import page_not_found
+
+# from django.conf.urls import handler404
+# from apps.web.views.page_not_found import page_not_found
+from .settings import STATIC_ROOT, STATIC_URL
+
+
+def page_not_foundx(request):
+
+    # return render(None, "404.html", context={})
+    return page_not_found(request, None, "404.html")
+
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path(route="", view=include(arg="apps.web.urls")),
+    path(route="*", view=page_not_foundx),
 ]
+
+urlpatterns += static(prefix=STATIC_URL, document_root=STATIC_ROOT)
