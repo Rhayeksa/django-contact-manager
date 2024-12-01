@@ -42,11 +42,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = int(DJANGO_DEBUG)
-DEBUG = True
+DEBUG = int(DJANGO_DEBUG)
+# DEBUG = True
 
-# ALLOWED_HOSTS = list(DJANGO_ALLOWED_HOSTS.split(sep=", "))
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = list(DJANGO_ALLOWED_HOSTS.split(sep=", "))
+# ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
